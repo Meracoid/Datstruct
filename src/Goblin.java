@@ -1,4 +1,8 @@
 public class Goblin extends Monster{
+    /**
+     * @author: meracoid
+     * @date: 11/10/16
+     */
     public Goblin(){
         this.health = 5;
         this.wait = 2;
