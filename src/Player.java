@@ -12,31 +12,30 @@ public class Player{
     private int health;
     private int damage;
     private ArrayList<String> inventory;
-    private int[5][5] location;
+    private int locationX;
+    private int locationY;
 
     public Player(){
         this.health = 10;
         this.damage = 1;
-        this.location[2][2] = 1;
+        this.locationX = 2;
+        this.locationY = 4;
     }
 
-    public String getLocation() {
-        for(int i = 0; i < location.length; i++){
-            for (int j = 0; j < location[].length; j++){
-                if(location[i][j] == 1){
-                    return i + " " + j;
-                }
-            }
-        }
+    public int getLocationX() {
+        return locationX;
     }
 
-    public void setLocation(int x, int y) {
-        String prevLocation - this.getLocation();
-        String[] tempLoc = prevLocation.split("\\s+");
-        int prevX = Integer.parseInt(tempLoc[0]);
-        int prevY = Integer.parseInt(tempLoc[1]);
-        location[prevX][prevY] = 0;
-        location[x][y]=1;
+    public int getLocationY() {
+        return locationY;
+    }
+
+    public void setLocationX(int locationX) {
+        this.locationX = locationX;
+    }
+
+    public void setLocationY(int locationY) {
+        this.locationY = locationY;
     }
 
     public void setHealth(int health) {
@@ -86,7 +85,43 @@ public class Player{
                 break;
             case "examine":
                 break;
+            case "inventory":
+                System.out.pritnln(getInventory());
+                break;
             case "move":
+                switch(commands[1].toLowerCase()){
+                    case "north":
+                        if(locationX + 1 < 5){
+                            locationX++;
+                        }else{
+                            System.out.println("There is a wall in that direction, you cannot move that way");
+                        }
+                        break;
+                    case "south":
+                        if(locationX - 1 > 0){
+                            locationX--;
+                        }else{
+                            System.out.println("There is a wall in that direction, you cannot move that way");
+                        }
+                        break;
+                    case "east";
+                        if(locationy + 1 < 5){
+                            locationy++;
+                        }else{
+                            System.out.println("There is a wall in that direction, you cannot move that way");
+                        }
+                        break;
+                    case "west":
+                        if(locationY - 1 > 0){
+                            locationY--;
+                        }else{
+                            System.out.println("There is a wall in that direction, you cannot move that way");
+                        }
+                        break;
+                    case default:
+                        System.out.println("Invalid direction, please use a cardinal direction");
+                        break;
+                }
                 break;
             case default:
                 System.out.println("Not a command, please use \"help\" to get list of commands");
@@ -100,7 +135,7 @@ public class Player{
                 "health - shows the player's current health \n" +
                 "grab {{Object}} - adds Object to inventory \n" +
                 "examine {{Object}} - gives description of item \n" +
+                "examine room - shows what is currently in the room \n" +
                 "move {{Direction}} - moves in a cardinal direction");
     }
-
 }
