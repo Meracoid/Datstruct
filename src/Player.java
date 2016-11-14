@@ -17,21 +17,26 @@ public class Player{
     public Player(){
         this.health = 10;
         this.damage = 1;
-
+        this.location[2][2] = 1;
     }
 
-    public int[][] getLocation() {
+    public String getLocation() {
         for(int i = 0; i < location.length; i++){
             for (int j = 0; j < location[].length; j++){
                 if(location[i][j] == 1){
-                    return ;
+                    return i + " " + j;
                 }
             }
         }
     }
 
-    public void setLocation(int[][] location) {
-        this.location = location;
+    public void setLocation(int x, int y) {
+        String prevLocation - this.getLocation();
+        String[] tempLoc = prevLocation.split("\\s+");
+        int prevX = Integer.parseInt(tempLoc[0]);
+        int prevY = Integer.parseInt(tempLoc[1]);
+        location[prevX][prevY] = 0;
+        location[x][y]=1;
     }
 
     public void setHealth(int health) {

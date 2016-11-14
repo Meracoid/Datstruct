@@ -8,6 +8,8 @@ public class Main{
         while(seed != 0){
             playGame();
         }
+        System.out.println("Thanks for playing");
+        console.close();
     }
 
     public static void playGame(){
