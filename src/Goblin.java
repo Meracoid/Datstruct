@@ -11,7 +11,7 @@ public class Goblin extends Monster{
     }
 
     public void attack(Player player){
-        if(player.getHealth() == 2){
+        if(player.getHealth() <= 2){
             player.die();
         }else{
             player.setHealth(player.getHealth() - 2);

@@ -20,6 +20,7 @@ public class Player{
         this.damage = 1;
         this.locationX = 2;
         this.locationY = 4;
+        this.addInventory("Wooden Sword");
     }
 
     public int getLocationX() {
@@ -50,12 +51,12 @@ public class Player{
         return damage;
     }
 
-    public ArrayList<String> getInventory() {
-        return inventory;
-    }
-
     public int getHealth() {
         return health;
+    }
+
+    public void addInventory(String item){
+        inventory.add(item);
     }
 
     public String getInventory() {

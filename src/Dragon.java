@@ -11,7 +11,7 @@ public class Dragon extends Monster{
     }
 
     public void attack(Player player){
-        if(player.getHealth() == 5){
+        if(player.getHealth() <= 5){
             player.die();
         }else{
             player.setHealth(player.getHealth() - 5);
