@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Player{
     /**
@@ -14,6 +15,7 @@ public class Player{
     private ArrayList<String> inventory;
     private int locationX;
     private int locationY;
+    private boolean inFight;
 
     public Player(){
         this.health = 10;
@@ -21,6 +23,7 @@ public class Player{
         this.locationX = 2;
         this.locationY = 4;
         this.addInventory("Wooden Sword");
+        this.inFight = false;
     }
 
     public int getLocationX() {
@@ -59,6 +62,14 @@ public class Player{
         inventory.add(item);
     }
 
+    public boolean isInFight() {
+        return inFight;
+    }
+
+    public void setInFight(boolean inFight) {
+        this.inFight = inFight;
+    }
+
     public String getInventory() {
         String temp = "";
         for (int i = 0; i < inventory.size(); i++){
@@ -71,13 +82,14 @@ public class Player{
         health = 0;
     }
 
-    public void command(String arg){
+    public void command(String arg, Map map){
         String[] commands = arg.split("\\s+");
         switch (commands[0].toLowerCase()) {
             case "help":
                 this.help();
                 break;
             case "use":
+
                 break;
             case "health":
                 System.out.println(this.getHealth() + "/10");
@@ -87,42 +99,96 @@ public class Player{
             case "examine":
                 switch(commands[1].toLowerCase()){
                     case "room":
+                        switch (map.getDungeonRoom(this.locationX, this.locationY)){
+                            case 1:
+                                System.out.print("You are in a hallway. ");
+                                canMoveDirection(map);
+                                break;
+                            case 2:
+                                System.out.print("You are in a room.");
+                                canMoveDirection(map);
+                                System.out.print("The following items are in the room: ");
+                                break;
+                            case 3:
+                                System.out.print("You are in a room. ");
+                                canMoveDirection(map);
+                                System.out.print("The following items are in the room: ");
+                                break;
+                            case 4:
+                                System.out.println("You are in a room. ");
+                                canMoveDirection(map);
+                                System.out.print("The following items are in the room: ");
+                                break;
+                            case -1:
+                                System.out.println("You are in a room. ");
+                                canMoveDirection(map);
+                                System.out.print("The following items are in the room: ");
+                                break;
+                        }
+                        System.out.println(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX, this.locationY))).toString());
                         break;
                     case "HealthPotion":
-                        System.out.println("A potion capable of healing 2 missing Health");
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("HealthPotion")) {
+                            System.out.println("A potion capable of healing 2 missing Health");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
                         break;
-                    case "north":
-
+                    case "DragonFlute":
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("DragonFlute")) {
+                            System.out.println("A flute, when used, will make the dragon not attack for a while");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
+                        break;
+                    case "Sword":
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("Sword")) {
+                            System.out.println("A sword that is much better than your own");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
+                        break;
+                    case "Shield":
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("Shield")) {
+                            System.out.println("A shield that will lessen your damage when used");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
+                        break;
                 }
                 break;
             case "inventory":
                 System.out.println(getInventory());
                 break;
             case "move":
+                if(this.inFight){
+                   System.out.println("You can't leave if you are in a fight, coward");
+                   break;
+                }
                 switch(commands[1].toLowerCase()){
                     case "north":
-                        if(this.locationX + 1 < 5){
+                        if(this.locationX + 1 < 5 && map.getDungeonRoom(this.locationX + 1, this.locationY) != 0){
                             this.locationX++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "south":
-                        if(this.locationX - 1 > 0){
+                        if(this.locationX - 1 > 0 && map.getDungeonRoom(this.locationX - 1, this.locationY) != 0){
                             this.locationX--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "east":
-                        if(this.locationY + 1 < 5){
+                        if(this.locationY + 1 < 5 && map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
                             this.locationY++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "west":
-                        if(this.locationY - 1 > 0){
+                        if(this.locationY - 1 > 0 && map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
                             this.locationY--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
@@ -146,7 +212,21 @@ public class Player{
                 "grab {{Object}} - adds Object to inventory \n" +
                 "examine {{Object}} - gives description of item \n" +
                 "examine room - shows what is currently in the room \n" +
-                "examine {{Direction}} - examines what you see in a direction \n" +
                 "move {{Direction}} - moves in a cardinal direction");
+    }
+
+    void canMoveDirection(Map map){
+        if(map.getDungeonRoom(this.locationX + 1, this.locationY) != 0){
+            System.out.print("You can move North");
+        }
+        if(map.getDungeonRoom(this.locationX - 1, this.locationY) != 0){
+            System.out.print("You can move South");
+        }
+        if(map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
+            System.out.print("You can move East");
+        }
+        if(map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
+            System.out.print("You can move West");
+        }
     }
 }

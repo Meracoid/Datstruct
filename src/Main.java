@@ -21,59 +21,61 @@ public class Main{
             int roomType = map.getDungeonRoom(player.getLocationX(), player.getLocationY());
             switch(roomType){
                 case 1:
-                    room1(player);
+                    room1(player, map);
                     break;
                 case 2:
-                    room2(player);
+                    room2(player, map);
                     break;
                 case 4:
-                    room4(player);
+                    room4(player, map);
                     break;
                 case -1:
-                    roomStart(player);
+                    roomStart(player, map);
                     break;
             }
         }
         if(player.getHealth() > 0) {
             System.out.println("THE EXIT IS BEING BLOCKED BY A DRAGON.");
-            fight(new Dragon(), player);
+            fight(new Dragon(), player, map);
         }else{
             System.out.println("GAME OVER");
         }
     }
 
-    public static void roomStart(Player player){
+    public static void roomStart(Player player, Map map){
         System.out.println("You are in a room with a door to the north");
         System.out.println("Type a command: ");
-        player.command(console.nextLine());
+        player.command(console.nextLine(), map);
     }
 
-    public static void room1(Player player){
+    public static void room1(Player player, Map map){
         System.out.println("You are in a hallway");
         System.out.println("Type a command: ");
-        player.command(console.nextLine());
+        player.command(console.nextLine(), map);
     }
 
-    public static void room2(Player player){
+    public static void room2(Player player, Map map){
         System.out.println("There's mysterious treasure, but a goblin is blocking you");
-        fight(new Goblin(), player);
+        fight(new Goblin(), player, map);
     }
 
-    public static void room4(Player player){
+    public static void room4(Player player, Map map){
         System.out.println("It seems there's a sword in the room, but a goblin is guarding it");
-        fight(new Goblin(), player);
+        fight(new Goblin(), player, map);
     }
 
-    public static void fight(Monster monster, Player player){
+    public static void fight(Monster monster, Player player, Map map){
+        player.setInFight(true);
         System.out.println("Type a command: ");
-        player.command(console.nextLine());
+        player.command(console.nextLine(), map);
         monster.turn(player);
         if(player.getHealth() > 0 || monster.getHealth() > 0){
-            fight(monster, player);
+            fight(monster, player, map);
         }else if(player.getHealth() == 0){
             System.out.println("GAME OVER");
         }else{
             System.out.println("YOU BEAT THE MONSTER!");
+            player.setInFight(false);
         }
     }
 }
