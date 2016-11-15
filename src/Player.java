@@ -177,28 +177,28 @@ public class Player{
                 }
                 switch(commands[1].toLowerCase()){
                     case "south":
-                        if(this.locationX + 1 < 5 && map.getDungeonRoom(this.locationX + 1, this.locationY) != 0){
+                        if(this.locationX + 1 < 6 && map.getDungeonRoom(this.locationX + 1, this.locationY) != 0){
                             this.locationX++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "north":
-                        if(this.locationX - 1 > 0 && map.getDungeonRoom(this.locationX - 1, this.locationY) != 0){
+                        if(this.locationX - 1 > -1 && map.getDungeonRoom(this.locationX - 1, this.locationY) != 0){
                             this.locationX--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "west":
-                        if(this.locationY + 1 < 5 && map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
+                        if(this.locationY + 1 < 6 && map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
                             this.locationY++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "east":
-                        if(this.locationY - 1 > 0 && map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
+                        if(this.locationY - 1 > -1 && map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
                             this.locationY--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
