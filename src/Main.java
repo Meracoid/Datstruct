@@ -19,6 +19,7 @@ public class Main{
         Map map = new Map();
         while(map.getDungeonRoom(player.getLocationX(), player.getLocationY()) != 3 && player.getHealth() > 0){
             int roomType = map.getDungeonRoom(player.getLocationX(), player.getLocationY());
+            System.out.println(player.getLocationX() + " " + player.getLocationY());
             switch(roomType){
                 case 1:
                     room1(player, map);

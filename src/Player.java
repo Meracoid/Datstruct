@@ -20,8 +20,8 @@ public class Player{
     public Player(){
         this.health = 10;
         this.damage = 1;
-        this.locationX = 2;
-        this.locationY = 4;
+        this.locationX = 4;
+        this.locationY = 2;
         this.addInventory("Wooden Sword");
         this.inFight = false;
     }
@@ -163,6 +163,8 @@ public class Player{
                             System.out.println("Invalid Item in current Room");
                         }
                         break;
+                    default:
+                        System.out.println("Not able to examine");
                 }
                 break;
             case "inventory":
@@ -174,28 +176,28 @@ public class Player{
                    break;
                 }
                 switch(commands[1].toLowerCase()){
-                    case "north":
+                    case "south":
                         if(this.locationX + 1 < 5 && map.getDungeonRoom(this.locationX + 1, this.locationY) != 0){
                             this.locationX++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case "south":
+                    case "north":
                         if(this.locationX - 1 > 0 && map.getDungeonRoom(this.locationX - 1, this.locationY) != 0){
                             this.locationX--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case "east":
+                    case "west":
                         if(this.locationY + 1 < 5 && map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
                             this.locationY++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case "west":
+                    case "east":
                         if(this.locationY - 1 > 0 && map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
                             this.locationY--;
                         }else{
@@ -225,21 +227,25 @@ public class Player{
     }
 
     void canMoveDirection(Map map){
-        try {
+        if(this.locationX + 1 < 5) {
             if (map.getDungeonRoom(this.locationX + 1, this.locationY) != 0) {
-                System.out.print("You can move North. ");
-            }
-            if (map.getDungeonRoom(this.locationX - 1, this.locationY) != 0) {
                 System.out.print("You can move South. ");
             }
-            if (map.getDungeonRoom(this.locationX, this.locationY + 1) != 0) {
-                System.out.print("You can move East. ");
+        }
+        if(this.locationX - 1 > 0) {
+            if (map.getDungeonRoom(this.locationX - 1, this.locationY) != 0) {
+                System.out.print("You can move North. ");
             }
-            if (map.getDungeonRoom(this.locationX, this.locationY - 1) != 0) {
+        }
+        if(this.locationY + 1 < 5) {
+            if (map.getDungeonRoom(this.locationX, this.locationY + 1) != 0) {
                 System.out.print("You can move West. ");
             }
-        }catch(Exception e){
-
+        }
+        if(this.locationY - 1 > 0) {
+            if (map.getDungeonRoom(this.locationX, this.locationY - 1) != 0) {
+                System.out.print("You can move East. ");
+            }
         }
     }
 }
