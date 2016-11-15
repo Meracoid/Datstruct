@@ -227,22 +227,22 @@ public class Player{
     }
 
     void canMoveDirection(Map map){
-        if(this.locationX + 1 < 5) {
+        if(this.locationX + 1 < 6) {
             if (map.getDungeonRoom(this.locationX + 1, this.locationY) != 0) {
                 System.out.print("You can move South. ");
             }
         }
-        if(this.locationX - 1 > 0) {
+        if(this.locationX - 1 > -1) {
             if (map.getDungeonRoom(this.locationX - 1, this.locationY) != 0) {
                 System.out.print("You can move North. ");
             }
         }
-        if(this.locationY + 1 < 5) {
+        if(this.locationY + 1 < 6) {
             if (map.getDungeonRoom(this.locationX, this.locationY + 1) != 0) {
                 System.out.print("You can move West. ");
             }
         }
-        if(this.locationY - 1 > 0) {
+        if(this.locationY - 1 > -1) {
             if (map.getDungeonRoom(this.locationX, this.locationY - 1) != 0) {
                 System.out.print("You can move East. ");
             }
