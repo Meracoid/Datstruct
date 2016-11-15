@@ -47,4 +47,12 @@ public class Monster{
     public void setWaitCounter(int waitCounter) {
         this.waitCounter = waitCounter;
     }
+
+    public void turn(Player player){
+        return;
+    }
+
+    public void attack(Player player){
+        return;
+    }
 }

@@ -4,10 +4,10 @@ public class Dragon extends Monster{
      * @date: 11/10/16
      */
     public Dragon(){
-        this.health = 10;
-        this.wait = 5;
-        this.waitCounter = 3;
-        this.damage = 5;
+        super.setHealth(10);
+        super.setWait(5);
+        super.setWaitCounter(2);
+        super.setDamage(5);
     }
 
     public void attack(Player player){

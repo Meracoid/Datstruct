@@ -87,44 +87,44 @@ public class Player{
             case "examine":
                 break;
             case "inventory":
-                System.out.pritnln(getInventory());
+                System.out.println(getInventory());
                 break;
             case "move":
                 switch(commands[1].toLowerCase()){
                     case "north":
-                        if(locationX + 1 < 5){
-                            locationX++;
+                        if(this.locationX + 1 < 5){
+                            this.locationX++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "south":
-                        if(locationX - 1 > 0){
-                            locationX--;
+                        if(this.locationX - 1 > 0){
+                            this.locationX--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case "east";
-                        if(locationy + 1 < 5){
-                            locationy++;
+                    case "east":
+                        if(this.locationY + 1 < 5){
+                            this.locationY++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
                     case "west":
-                        if(locationY - 1 > 0){
-                            locationY--;
+                        if(this.locationY - 1 > 0){
+                            this.locationY--;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case default:
+                    default:
                         System.out.println("Invalid direction, please use a cardinal direction");
                         break;
                 }
                 break;
-            case default:
+            default:
                 System.out.println("Not a command, please use \"help\" to get list of commands");
                 break;
         }

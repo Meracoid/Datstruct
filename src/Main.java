@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main{
-    private Scanner console = new Scanner(System.in);
+    private static Scanner console = new Scanner(System.in);
     public static void main(String[] args){
         System.out.println("Type a number 1 to play, 0 to exit");
         int seed = console.nextInt();
@@ -21,15 +21,15 @@ public class Main{
             int roomType = map.getDungeonRoom(player.getLocationX(), player.getLocationY());
             switch(roomType){
                 case 1:
-                    room1(player);
+                    //room1(player);
                     break;
                 case 2:
-                    room2(player);
+                    //room2(player);
                     break;
                 case 4:
-                    room4(player);
+                    //room4(player);
                     break;
-                case default:
+                case -1:
                     roomStart(player);
                     break;
             }

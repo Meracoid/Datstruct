@@ -4,10 +4,10 @@ public class Goblin extends Monster{
      * @date: 11/10/16
      */
     public Goblin(){
-        this.health = 5;
-        this.wait = 2;
-        this.damage = 1;
-        this.waitCounter = 0;
+        super.setHealth(5);
+        super.setWait(2);
+        super.setDamage(1);
+        super.setWaitCounter(0);
     }
 
     public void attack(Player player){
