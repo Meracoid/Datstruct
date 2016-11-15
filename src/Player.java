@@ -80,11 +80,20 @@ public class Player{
             case "use":
                 break;
             case "health":
-                this.getHealth();
+                System.out.println(this.getHealth() + "/10");
                 break;
             case "grab":
                 break;
             case "examine":
+                switch(commands[1].toLowerCase()){
+                    case "room":
+                        break;
+                    case "HealthPotion":
+                        System.out.println("A potion capable of healing 2 missing Health");
+                        break;
+                    case "north":
+
+                }
                 break;
             case "inventory":
                 System.out.println(getInventory());
@@ -137,6 +146,7 @@ public class Player{
                 "grab {{Object}} - adds Object to inventory \n" +
                 "examine {{Object}} - gives description of item \n" +
                 "examine room - shows what is currently in the room \n" +
+                "examine {{Direction}} - examines what you see in a direction \n" +
                 "move {{Direction}} - moves in a cardinal direction");
     }
 }

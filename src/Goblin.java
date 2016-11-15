@@ -23,7 +23,7 @@ public class Goblin extends Monster{
             this.attack(player);
             super.setWaitCounter(0);
         }else{
-            super.setWaitCoutner(super.getWaitCounter() + 1);
+            super.setWaitCounter(super.getWaitCounter() + 1);
         }
     }
 }

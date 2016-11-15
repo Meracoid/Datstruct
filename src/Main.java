@@ -21,13 +21,13 @@ public class Main{
             int roomType = map.getDungeonRoom(player.getLocationX(), player.getLocationY());
             switch(roomType){
                 case 1:
-                    //room1(player);
+                    room1(player);
                     break;
                 case 2:
-                    //room2(player);
+                    room2(player);
                     break;
                 case 4:
-                    //room4(player);
+                    room4(player);
                     break;
                 case -1:
                     roomStart(player);
@@ -46,6 +46,22 @@ public class Main{
         System.out.println("You are in a room with a door to the north");
         System.out.println("Type a command: ");
         player.command(console.nextLine());
+    }
+
+    public static void room1(Player player){
+        System.out.println("You are in a hallway");
+        System.out.println("Type a command: ");
+        player.command(console.nextLine());
+    }
+
+    public static void room2(Player player){
+        System.out.println("There's mysterious treasure, but a goblin is blocking you");
+        fight(new Goblin(), player);
+    }
+
+    public static void room4(Player player){
+        System.out.println("It seems there's a sword in the room, but a goblin is guarding it");
+        fight(new Goblin(), player);
     }
 
     public static void fight(Monster monster, Player player){
