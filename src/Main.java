@@ -43,25 +43,45 @@ public class Main{
     }
 
     public static void roomStart(Player player, Map map){
+        int currentX = player.getLocationX();
+        int currentY = player.getLocationY();
         System.out.println("You are in a room with a door to the north");
-        System.out.println("Type a command: ");
-        player.command(console.nextLine(), map);
+        while(currentX == player.getLocationX() && currentY == player.getLocationY()) {
+            System.out.println("Type a command: ");
+            player.command(console.nextLine(), map);
+        }
     }
 
     public static void room1(Player player, Map map){
+        int currentX = player.getLocationX();
+        int currentY = player.getLocationY();
         System.out.println("You are in a hallway");
-        System.out.println("Type a command: ");
-        player.command(console.nextLine(), map);
+        while(currentX == player.getLocationX() && currentY == player.getLocationY()) {
+            System.out.println("Type a command: ");
+            player.command(console.nextLine(), map);
+        }
     }
 
     public static void room2(Player player, Map map){
+        int currentX = player.getLocationX();
+        int currentY = player.getLocationY();
         System.out.println("There's mysterious treasure, but a goblin is blocking you");
         fight(new Goblin(), player, map);
+        while(currentX == player.getLocationX() && currentY == player.getLocationY() && player.getHealth() != 0) {
+            System.out.println("Type a command: ");
+            player.command(console.nextLine(), map);
+        }
     }
 
     public static void room4(Player player, Map map){
+        int currentX = player.getLocationX();
+        int currentY = player.getLocationY();
         System.out.println("It seems there's a sword in the room, but a goblin is guarding it");
         fight(new Goblin(), player, map);
+        while(currentX == player.getLocationX() && currentY == player.getLocationY() && player.getHealth() != 0) {
+            System.out.println("Type a command: ");
+            player.command(console.nextLine(), map);
+        }
     }
 
     public static void fight(Monster monster, Player player, Map map){

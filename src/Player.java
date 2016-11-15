@@ -12,7 +12,7 @@ public class Player{
      */
     private int health;
     private int damage;
-    private ArrayList<String> inventory;
+    private ArrayList<String> inventory = new ArrayList<String>();
     private int locationX;
     private int locationY;
     private boolean inFight;
@@ -59,7 +59,11 @@ public class Player{
     }
 
     public void addInventory(String item){
-        inventory.add(item);
+        try {
+            inventory.add(item);
+        }catch(Exception e){
+
+        }
     }
 
     public boolean isInFight() {
@@ -72,8 +76,12 @@ public class Player{
 
     public String getInventory() {
         String temp = "";
-        for (int i = 0; i < inventory.size(); i++){
-            temp = temp + inventory.get(i) + " ";
+        try {
+            for (int i = 0; i < inventory.size(); i++) {
+                temp = temp + inventory.get(i) + " ";
+            }
+        }catch(Exception e){
+
         }
         return temp;
     }
@@ -210,23 +218,28 @@ public class Player{
                 "use {{Object}} - uses an object \n" +
                 "health - shows the player's current health \n" +
                 "grab {{Object}} - adds Object to inventory \n" +
+                "inventory - shows your current inventory \n" +
                 "examine {{Object}} - gives description of item \n" +
                 "examine room - shows what is currently in the room \n" +
                 "move {{Direction}} - moves in a cardinal direction");
     }
 
     void canMoveDirection(Map map){
-        if(map.getDungeonRoom(this.locationX + 1, this.locationY) != 0){
-            System.out.print("You can move North");
-        }
-        if(map.getDungeonRoom(this.locationX - 1, this.locationY) != 0){
-            System.out.print("You can move South");
-        }
-        if(map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
-            System.out.print("You can move East");
-        }
-        if(map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
-            System.out.print("You can move West");
+        try {
+            if (map.getDungeonRoom(this.locationX + 1, this.locationY) != 0) {
+                System.out.print("You can move North. ");
+            }
+            if (map.getDungeonRoom(this.locationX - 1, this.locationY) != 0) {
+                System.out.print("You can move South. ");
+            }
+            if (map.getDungeonRoom(this.locationX, this.locationY + 1) != 0) {
+                System.out.print("You can move East. ");
+            }
+            if (map.getDungeonRoom(this.locationX, this.locationY - 1) != 0) {
+                System.out.print("You can move West. ");
+            }
+        }catch(Exception e){
+
         }
     }
 }
