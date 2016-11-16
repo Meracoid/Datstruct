@@ -8,5 +8,6 @@ public class Dragon extends Monster{
         super.setWait(5);
         super.setWaitCounter(2);
         super.setDamage(5);
+        super.setReducedDamage(false);
     }
 }

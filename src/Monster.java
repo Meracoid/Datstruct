@@ -11,9 +11,18 @@ public class Monster{
     private int damage;
     private int wait;
     private int waitCounter;
+    private boolean reducedDamage;
 
     public Monster(){
 
+    }
+
+    public boolean isReducedDamage() {
+        return reducedDamage;
+    }
+
+    public void setReducedDamage(boolean reducedDamage) {
+        this.reducedDamage = reducedDamage;
     }
 
     public int getDamage() {
@@ -49,6 +58,13 @@ public class Monster{
     }
 
     public void attack(Player player){
+        if(player.isHasShield() && !this.reducedDamage){
+            this.damage -= 2;
+            if(this.damage <= 0){
+                this.damage = 1;
+            }
+            this.reducedDamage = true;
+        }
         if(player.getHealth() <= this.getDamage()){
             System.out.println("The monster deals fatal damage.");
             player.die();

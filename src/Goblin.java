@@ -8,5 +8,6 @@ public class Goblin extends Monster{
         super.setWait(2);
         super.setDamage(1);
         super.setWaitCounter(0);
+        super.setReducedDamage(false);
     }
 }
