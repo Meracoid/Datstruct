@@ -109,7 +109,7 @@ public class Player{
             case "use":
                 if(this.inventory.contains(commands[1])) {
                     switch (commands[1].toLowerCase()) {
-                        case "healthpotion":
+                        case "health-potion":
                             if (this.health <= 7) {
                                 this.health += 2;
                                 System.out.println("Health raised by 2 points. Current health " + this.getHealth() + "/10");
@@ -144,8 +144,9 @@ public class Player{
                                 attack(monster);
                                 this.damage = 1;
                             }
+                            break;
                         case "compass":
-                            System.out.println("You are currently at (" + this.locationX + this.locationY + ")");
+                            System.out.println("You are currently at (" + this.locationX + ", " + this.locationY + ")");
                             break;
                         case "gold":
                             System.out.println("Has no effect");
@@ -215,7 +216,6 @@ public class Player{
                         }
                         break;
                     case "shield":
-                        System.out.println(commands[1]);
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("shield")) {
                             System.out.println("A shield that will lessen your damage when used");
                         }else{
