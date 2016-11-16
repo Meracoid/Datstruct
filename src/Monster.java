@@ -48,11 +48,24 @@ public class Monster{
         this.waitCounter = waitCounter;
     }
 
-    public void turn(Player player){
-        return;
+    public void attack(Player player){
+        if(player.getHealth() <= this.getDamage()){
+            System.out.println("The monster deals fatal damage.");
+            player.die();
+        }else{
+            System.out.println("The monster deals " + this.getDamage() + ".");
+            player.setHealth(player.getHealth() - this.getDamage());
+            System.out.println("Current health: " + player.getHealth() + "/10.");
+        }
     }
 
-    public void attack(Player player){
-        return;
+    public void turn(Player player){
+        if(this.getWait() == this.getWaitCounter()){
+            this.attack(player);
+            this.setWaitCounter(0);
+        }else{
+            this.setWaitCounter(this.getWaitCounter() + 1);
+            System.out.println("The monster is waiting");
+        }
     }
 }

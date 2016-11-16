@@ -2,10 +2,10 @@ import java.util.Arrays;
 
 public class Map{
     private final int[][] map = {{0,0,3,0,4},{0,0,1,0,1},{2,0,1,0,1},{1,1,1,1,1},{0,0,-1,0,0}};
-    private String[] roomStartItems = {"Shield", "HealthPotion", "Compass"};
-    private String[] room2Items = {"HealthPotion", "DragonFlute"};
-    private String[] room3Items = {"Gold"};
-    private String[] room4Items = {"Sword", "HealthPotion"};
+    private String[] roomStartItems = {"shield", "health-potion", "compass"};
+    private String[] room2Items = {"health-potion"};
+    private String[] room3Items = {"gold"};
+    private String[] room4Items = {"sword", "health-potion"};
     public Map(){
         return;
     }
@@ -47,7 +47,7 @@ public class Map{
 
     public boolean hasItem(int roomNumber, String item){
         String[] roomItems = this.getRoomItems(roomNumber);
-        return Arrays.asList(roomItems).contains(item);
+        return Arrays.asList(roomItems).contains(item.toLowerCase());
     }
 
 }

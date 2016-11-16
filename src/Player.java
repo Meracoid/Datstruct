@@ -15,6 +15,7 @@ public class Player{
     private ArrayList<String> inventory = new ArrayList<String>();
     private int locationX;
     private int locationY;
+    private boolean hasShield;
     private boolean inFight;
 
     public Player(){
@@ -22,8 +23,17 @@ public class Player{
         this.damage = 1;
         this.locationX = 4;
         this.locationY = 2;
-        this.addInventory("Wooden Sword");
+        this.addInventory("Wooden-Sword");
         this.inFight = false;
+        this.hasShield = false;
+    }
+
+    public boolean isHasShield() {
+        return hasShield;
+    }
+
+    public void setHasShield(boolean hasShield) {
+        this.hasShield = hasShield;
     }
 
     public int getLocationX() {
@@ -75,10 +85,10 @@ public class Player{
     }
 
     public String getInventory() {
-        String temp = "";
+        String temp = inventory.get(0);
         try {
-            for (int i = 0; i < inventory.size(); i++) {
-                temp = temp + inventory.get(i) + " ";
+            for (int i = 1; i < inventory.size(); i++) {
+                temp = temp + ", " + inventory.get(i);
             }
         }catch(Exception e){
 
@@ -109,15 +119,24 @@ public class Player{
                             }
                             break;
                         case "shield":
+                            if(inventory.contains("shield")){
+                                hasShield = true;
+                                System.out.println("You have equipted the shield");
+                            }else{
+                                System.out.println("You do not have a shield");
+                            }
                             break;
                         case "sword":
                             if (!inFight) {
                                 System.out.println("Cannot use out of combat.");
                             }
                             break;
-                        case "dragonflute":
-                            break;
+                        case "wooden-sword":
+                            if(!inFight){
+                                System.out.println("Cannot use out of combat.");
+                            }
                         case "compass":
+                            System.out.println("You are currently at (" + this.locationX + this.locationY + ")");
                             break;
                         case "gold":
                             System.out.println("Has no effect");
@@ -132,6 +151,7 @@ public class Player{
                 System.out.println(this.getHealth() + "/10");
                 break;
             case "grab":
+                System.out.println(commands[1]);
                 if(map.hasItem(map.getDungeonRoom(this.locationX, this.locationY), commands[1])){
                     map.loseItem(map.getDungeonRoom(this.locationX, this.locationY), commands[1]);
                     this.addInventory(commands[1]);
@@ -171,28 +191,21 @@ public class Player{
                         }
                         System.out.println(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX, this.locationY))).toString());
                         break;
-                    case "HealthPotion":
+                    case "health-potion":
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("HealthPotion")) {
                             System.out.println("A potion capable of healing 2 missing Health");
                         }else{
                             System.out.println("Invalid Item in current Room");
                         }
                         break;
-                    case "DragonFlute":
-                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("DragonFlute")) {
-                            System.out.println("A flute, when used, will make the dragon not attack for a while");
-                        }else{
-                            System.out.println("Invalid Item in current Room");
-                        }
-                        break;
-                    case "Sword":
+                    case "sword":
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("Sword")) {
                             System.out.println("A sword that is much better than your own");
                         }else{
                             System.out.println("Invalid Item in current Room");
                         }
                         break;
-                    case "Shield":
+                    case "shield":
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("Shield")) {
                             System.out.println("A shield that will lessen your damage when used");
                         }else{
