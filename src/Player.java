@@ -23,7 +23,7 @@ public class Player{
         this.damage = 1;
         this.locationX = 4;
         this.locationY = 2;
-        this.addInventory("Wooden-Sword");
+        this.addInventory("wooden-sword");
         this.inFight = false;
         this.hasShield = false;
     }
@@ -113,6 +113,7 @@ public class Player{
                             if (this.health <= 7) {
                                 this.health += 2;
                                 System.out.println("Health raised by 2 points. Current health " + this.getHealth() + "/10");
+                                removeItem(commands[1].toLowerCase());
                             } else {
                                 this.health = 10;
                                 System.out.println("Health maxed out!");
@@ -296,5 +297,18 @@ public class Player{
                 System.out.print("You can move East. ");
             }
         }
+    }
+
+    boolean removeItem(String item){
+        if(this.inventory.contain(item)){
+            for(int i = 0; i < this.inventory.size() - 1; i++){
+                if(inventory.get(i).equals(item)){
+                    iventory.remove(i);
+                    System.out.println("You used your " + item + ".");
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

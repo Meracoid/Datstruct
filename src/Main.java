@@ -46,7 +46,7 @@ public class Main{
     public static void roomStart(Player player, Map map){
         int currentX = player.getLocationX();
         int currentY = player.getLocationY();
-        System.out.println("You are in a room with a door to the north");
+        System.out.println("You appear in a room.");
         while(currentX == player.getLocationX() && currentY == player.getLocationY()) {
             System.out.println("Type a command: ");
             player.command(console.nextLine(), map);
