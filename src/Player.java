@@ -133,6 +133,7 @@ public class Player{
                             }else{
                                 this.damage = 3;
                                 attack(monster);
+                                System.out.println("You dealt 3 damage to the monster");
                                 this.damage = 1;
                             }
                             break;
@@ -142,6 +143,7 @@ public class Player{
                             }else{
                                 this.damage = 2;
                                 attack(monster);
+                                System.out.println("You dealt 2 damage to the monster");
                                 this.damage = 1;
                             }
                             break;
@@ -326,6 +328,7 @@ public class Player{
             monster.setHealth(0);
         }else{
             monster.setHealth(monster.getHealth() - this.damage);
+            System.out.println(monster.getHealth());
         }
     }
 }
