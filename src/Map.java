@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Map{
     private final int[][] map = {{0,0,3,0,4},{0,0,1,0,1},{2,0,1,0,1},{1,1,1,1,1},{0,0,-1,0,0}};
     private String[] roomStartItems = {"Shield", "HealthPotion", "Compass"};
@@ -24,8 +26,28 @@ public class Map{
                 return room4Items;
             default:
                 System.out.println("You are in a hallway, no items in the hallway");
-                return null;
+                String[] nothing = {""};
+                return nothing;
         }
+    }
+
+    public boolean loseItem(int roomNumber, String item){
+        String[] roomItems = this.getRoomItems(roomNumber);
+        if(this.hasItem(roomNumber, item)){
+            for(int i = 0; i < roomItems.length; i++){
+                if(roomItems[i].equals(item)){
+                    roomItems[i] = "";
+                }
+            }
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean hasItem(int roomNumber, String item){
+        String[] roomItems = this.getRoomItems(roomNumber);
+        return Arrays.asList(roomItems).contains(item);
     }
 
 }

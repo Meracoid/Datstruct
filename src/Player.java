@@ -97,12 +97,48 @@ public class Player{
                 this.help();
                 break;
             case "use":
+                if(this.inventory.contains(commands[1])) {
+                    switch (commands[1].toLowerCase()) {
+                        case "healthpotion":
+                            if (this.health <= 7) {
+                                this.health += 2;
+                                System.out.println("Health raised by 2 points. Current health " + this.getHealth() + "/10");
+                            } else {
+                                this.health = 10;
+                                System.out.println("Health maxed out!");
+                            }
+                            break;
+                        case "shield":
+                            break;
+                        case "sword":
+                            if (!inFight) {
+                                System.out.println("Cannot use out of combat.");
+                            }
+                            break;
+                        case "dragonflute":
+                            break;
+                        case "compass":
+                            break;
+                        case "gold":
+                            System.out.println("Has no effect");
+                            break;
 
+                    }
+                }else{
+                    System.out.println("Item not in your inventory.");
+                }
                 break;
             case "health":
                 System.out.println(this.getHealth() + "/10");
                 break;
             case "grab":
+                if(map.hasItem(map.getDungeonRoom(this.locationX, this.locationY), commands[1])){
+                    map.loseItem(map.getDungeonRoom(this.locationX, this.locationY), commands[1]);
+                    this.addInventory(commands[1]);
+                    System.out.println("You added " + commands[1] + ". Current Inventory: " + this.getInventory());
+                }else{
+                    System.out.println("Item is not in the room.");
+                }
                 break;
             case "examine":
                 switch(commands[1].toLowerCase()){
@@ -227,7 +263,7 @@ public class Player{
     }
 
     void canMoveDirection(Map map){
-        if(this.locationX + 1 < 6) {
+        if(this.locationX + 1 < 5) {
             if (map.getDungeonRoom(this.locationX + 1, this.locationY) != 0) {
                 System.out.print("You can move South. ");
             }
@@ -237,7 +273,7 @@ public class Player{
                 System.out.print("You can move North. ");
             }
         }
-        if(this.locationY + 1 < 6) {
+        if(this.locationY + 1 < 5) {
             if (map.getDungeonRoom(this.locationX, this.locationY + 1) != 0) {
                 System.out.print("You can move West. ");
             }
