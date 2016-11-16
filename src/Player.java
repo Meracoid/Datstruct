@@ -100,7 +100,7 @@ public class Player{
         health = 0;
     }
 
-    public void command(String arg, Map map){
+    public void command(String arg, Map map, Monster monster){
         String[] commands = arg.split("\\s+");
         switch (commands[0].toLowerCase()) {
             case "help":
@@ -130,11 +130,19 @@ public class Player{
                         case "sword":
                             if (!inFight) {
                                 System.out.println("Cannot use out of combat.");
+                            }else{
+                                this.damage = 3;
+                                attack(monster);
+                                this.damage = 1;
                             }
                             break;
                         case "wooden-sword":
                             if(!inFight){
                                 System.out.println("Cannot use out of combat.");
+                            }else{
+                                this.damage = 2;
+                                attack(monster);
+                                this.damage = 1;
                             }
                         case "compass":
                             System.out.println("You are currently at (" + this.locationX + this.locationY + ")");
@@ -193,21 +201,22 @@ public class Player{
                         System.out.println(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX, this.locationY))).toString());
                         break;
                     case "health-potion":
-                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("HealthPotion")) {
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("health-potion")) {
                             System.out.println("A potion capable of healing 2 missing Health");
                         }else{
                             System.out.println("Invalid Item in current Room");
                         }
                         break;
                     case "sword":
-                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("Sword")) {
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("sword")) {
                             System.out.println("A sword that is much better than your own");
                         }else{
                             System.out.println("Invalid Item in current Room");
                         }
                         break;
                     case "shield":
-                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("Shield")) {
+                        System.out.println(commands[1]);
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("shield")) {
                             System.out.println("A shield that will lessen your damage when used");
                         }else{
                             System.out.println("Invalid Item in current Room");
@@ -300,15 +309,23 @@ public class Player{
     }
 
     boolean removeItem(String item){
-        if(this.inventory.contain(item)){
+        if(this.inventory.contains(item)){
             for(int i = 0; i < this.inventory.size() - 1; i++){
                 if(inventory.get(i).equals(item)){
-                    iventory.remove(i);
+                    inventory.remove(i);
                     System.out.println("You used your " + item + ".");
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    void attack(Monster monster){
+        if(monster.getHealth() <= this.damage){
+            monster.setHealth(0);
+        }else{
+            monster.setHealth(monster.getHealth() - this.damage);
+        }
     }
 }

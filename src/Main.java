@@ -49,7 +49,7 @@ public class Main{
         System.out.println("You appear in a room.");
         while(currentX == player.getLocationX() && currentY == player.getLocationY()) {
             System.out.println("Type a command: ");
-            player.command(console.nextLine(), map);
+            player.command(console.nextLine(), map, new Monster());
         }
     }
 
@@ -59,7 +59,7 @@ public class Main{
         System.out.println("You are in a hallway");
         while(currentX == player.getLocationX() && currentY == player.getLocationY()) {
             System.out.println("Type a command: ");
-            player.command(console.nextLine(), map);
+            player.command(console.nextLine(), map, new Monster());
         }
     }
 
@@ -70,7 +70,7 @@ public class Main{
         fight(new Goblin(), player, map);
         while(currentX == player.getLocationX() && currentY == player.getLocationY() && player.getHealth() != 0) {
             System.out.println("Type a command: ");
-            player.command(console.nextLine(), map);
+            player.command(console.nextLine(), map, new Monster());
         }
     }
 
@@ -81,14 +81,14 @@ public class Main{
         fight(new Goblin(), player, map);
         while(currentX == player.getLocationX() && currentY == player.getLocationY() && player.getHealth() != 0) {
             System.out.println("Type a command: ");
-            player.command(console.nextLine(), map);
+            player.command(console.nextLine(), map, new Monster());
         }
     }
 
     public static void fight(Monster monster, Player player, Map map){
         player.setInFight(true);
         System.out.println("Type a command: ");
-        player.command(console.nextLine(), map);
+        player.command(console.nextLine(), map, monster);
         monster.turn(player);
         if(player.getHealth() > 0 || monster.getHealth() > 0){
             fight(monster, player, map);
