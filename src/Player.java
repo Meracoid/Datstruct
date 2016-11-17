@@ -339,7 +339,7 @@ public class Player{
 
     void showLocation(Map map){
         System.out.println("KEY: + is hallway, M is a monster room, E is an exit, S is the starting room," +
-                " / is an inaccessible area. You are at X.");
+                " * is an inaccessible area. You are at X.");
         for(int i = 0; i <= 4; i++){
             System.out.print("[");
             for (int j = 0; j <= 4; j++){
@@ -348,7 +348,7 @@ public class Player{
                 }else{
                     switch(map.getDungeonRoom(i,j)){
                         case 0:
-                            System.out.print("/");
+                            System.out.print("*);
                             break;
                         case 1:
                             System.out.print("+");
