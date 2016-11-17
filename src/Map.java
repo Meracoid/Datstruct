@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Map{
     private final int[][] map = {{0,0,3,0,4},{0,0,1,0,1},{2,0,1,0,1},{1,1,1,1,1},{0,0,-1,0,0}};
-    private String[] roomStartItems = {"shield", "health-potion", "compass"};
+    private String[] roomStartItems = {"shield", "health-potion", "map"};
     private String[] room2Items = {"health-potion"};
     private String[] room3Items = {"gold"};
     private String[] room4Items = {"sword", "health-potion"};

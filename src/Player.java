@@ -147,8 +147,8 @@ public class Player{
                                 this.damage = 1;
                             }
                             break;
-                        case "compass":
-                            System.out.println("You are currently at (" + this.locationX + ", " + this.locationY + ")");
+                        case "map":
+                            showLocation(map);
                             break;
                         case "gold":
                             System.out.println("Has no effect");
@@ -163,7 +163,6 @@ public class Player{
                 System.out.println(this.getHealth() + "/10");
                 break;
             case "grab":
-                System.out.println(commands[1]);
                 if(map.hasItem(map.getDungeonRoom(this.locationX, this.locationY), commands[1])){
                     map.loseItem(map.getDungeonRoom(this.locationX, this.locationY), commands[1]);
                     this.addInventory(commands[1]);
@@ -220,6 +219,13 @@ public class Player{
                     case "shield":
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("shield")) {
                             System.out.println("A shield that will lessen your damage when used");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
+                        break;
+                    case "map":
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("map")) {
+                            System.out.println("A map of the area. Also shows your location");
                         }else{
                             System.out.println("Invalid Item in current Room");
                         }
@@ -328,6 +334,41 @@ public class Player{
             monster.setHealth(0);
         }else{
             monster.setHealth(monster.getHealth() - this.damage);
+        }
+    }
+
+    void showLocation(Map map){
+        System.out.println("KEY: + is hallway, M is a monster room, E is an exit, S is the starting room," +
+                " / is an inaccessible area. You are at X.");
+        for(int i = 0; i <= 4; i++){
+            System.out.print("[");
+            for (int j = 0; j <= 4; j++){
+                if(this.locationX == i && this.locationY == j){
+                    System.out.print("X");
+                }else{
+                    switch(map.getDungeonRoom(i,j)){
+                        case 0:
+                            System.out.print("/");
+                            break;
+                        case 1:
+                            System.out.print("+");
+                            break;
+                        case 2:
+                            System.out.print("M");
+                            break;
+                        case 3:
+                            System.out.print("E");
+                            break;
+                        case 4:
+                            System.out.print("M");
+                            break;
+                        case -1:
+                            System.out.print("S");
+                            break;
+                    }
+                }
+            }
+            System.out.println("]");
         }
     }
 }
