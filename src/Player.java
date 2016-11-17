@@ -328,7 +328,6 @@ public class Player{
             monster.setHealth(0);
         }else{
             monster.setHealth(monster.getHealth() - this.damage);
-            System.out.println(monster.getHealth());
         }
     }
 }

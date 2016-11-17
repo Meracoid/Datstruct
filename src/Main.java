@@ -90,7 +90,7 @@ public class Main{
         System.out.println("Type a command: ");
         player.command(console.nextLine(), map, monster);
         monster.turn(player);
-        if(player.getHealth() > 0 || monster.getHealth() > 0){
+        if(player.getHealth() > 0 && monster.getHealth() > 0){
             fight(monster, player, map);
         }else if(player.getHealth() == 0){
             System.out.println("GAME OVER");
