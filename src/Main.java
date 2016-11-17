@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Main{
     private static Scanner console = new Scanner(System.in);
     public static void main(String[] args){
-        System.out.println("Type a number 1 to play, 0 to exit");
+        System.out.println("Type 1 to play, 0 to exit");
         int seed = console.nextInt();
         while(seed != 0){
             playGame();
-            System.out.println("Type a number 1 to play again, 0 to exit");
+            System.out.println("Type 1 to play again, 0 to exit");
             seed = console.nextInt();
         }
         System.out.println("Thanks for playing");

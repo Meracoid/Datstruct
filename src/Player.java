@@ -348,7 +348,7 @@ public class Player{
                 }else{
                     switch(map.getDungeonRoom(i,j)){
                         case 0:
-                            System.out.print("*);
+                            System.out.print("*");
                             break;
                         case 1:
                             System.out.print("+");
