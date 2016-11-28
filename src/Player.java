@@ -257,14 +257,14 @@ public class Player{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case "west":
+                    case "east":
                         if(this.locationY + 1 < 6 && map.getDungeonRoom(this.locationX, this.locationY + 1) != 0){
                             this.locationY++;
                         }else{
                             System.out.println("There is a wall in that direction, you cannot move that way");
                         }
                         break;
-                    case "east":
+                    case "west":
                         if(this.locationY - 1 > -1 && map.getDungeonRoom(this.locationX, this.locationY - 1) != 0){
                             this.locationY--;
                         }else{
