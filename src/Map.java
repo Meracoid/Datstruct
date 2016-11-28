@@ -11,6 +11,9 @@ public class Map{
     }
 
     public int getDungeonRoom(int x, int y){
+        if(x<0||y<0||x>=map.length||y>=map.length){ 
+            return 0;
+        }
         return map[x][y];
     }
 
