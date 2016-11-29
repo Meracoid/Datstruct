@@ -202,6 +202,13 @@ public class Player{
                         }
                         System.out.println(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX, this.locationY))).toString());
                         break;
+                        case "wooden-sword":
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("sword")) {
+                            System.out.println("You made it yourself...it's good enough");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
+                        break;
                     case "health-potion":
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("health-potion")) {
                             System.out.println("A potion capable of healing 2 missing Health");
