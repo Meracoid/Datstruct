@@ -232,7 +232,7 @@ public class Player{
                         break;
                     case "gold":
                         if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("map")) {
-                            System.out.println("precious mineral, can be sold outside of the dungeon for high price");
+                            System.out.println("A precious mineral. Go you!");
                         }else{
                             System.out.println("Invalid Item in current Room");
                         }
