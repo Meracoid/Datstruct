@@ -230,6 +230,13 @@ public class Player{
                             System.out.println("Invalid Item in current Room");
                         }
                         break;
+                    case "gold":
+                        if(Arrays.asList(map.getRoomItems(map.getDungeonRoom(this.locationX,this.locationY))).contains("map")) {
+                            System.out.println("A precious mineral. Go you!");
+                        }else{
+                            System.out.println("Invalid Item in current Room");
+                        }
+                        break;
                     default:
                         System.out.println("Not able to examine");
                 }
